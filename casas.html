@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ravenclaw</title>
+    <title> </title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,18 +11,13 @@
     <div class="main">
     </div>
     <script>
-        fetch(`https://wizard-world-api.herokuapp.com/wizards `).then((data)=>{
+    
+
+        fetch(`https://wizard-world-api.herokuapp.com/Houses `).then((data)=>{
             let info = data.json();
             return info;
         }).then((data)=>{
             displaydata(data);
-        })
-
-        fetch(`https://wizard-world-api.herokuapp.com/houses `).then((data2)=>{
-            let info2 = data2.json();
-            return info2;
-        }).then((data2)=>{
-            displaydata(data2);
         })
 
 
@@ -34,11 +29,10 @@
                 let box = document.createElement("div");
                 box.setAttribute("class","box");
                 let content =document.getElementById("content");
-
                 main.appendChild(box);
-                box.innerHTML = `<h2>${data[i].name}</h2>`
-                          
-                
+                box.innerHTML = `<h2>${data[i].name} ${data[i].houseColours} ${data[i].founder} ${data[i].animal} ${data[i].element} ${data[i].ghost} ${data[i].commonRoom} ${data[i].heads.firstName} ${data[i].heads.lastName} ${data[i].traits.name}</h2>`
+                        
+                }
             }
 
           
