@@ -11,7 +11,7 @@
     <div class="main">
     </div>
     <script>
-        fetch(`http://hp-api.herokuapp.com`).then((data)=>{
+        fetch(`https://wizard-world-api.herokuapp.com/wizards `).then((data)=>{
             let info = data.json();
             return info;
         }).then((data)=>{
@@ -29,10 +29,10 @@
                 let content =document.getElementById("content");
 
                 main.appendChild(box);
-                box.innerHTML = `<h2>${data[i].wizard.FirstName}</h2> 
-                                <img src="${data[i].wizard.LastName}"></img>
+                box.innerHTML = `<h2>${data[i].firstName} ${data[i].lastName}</h2>
+                               
                                 <div class="info">
-                                    <p>Gender:- ${data[i].wizard.gender}</p>
+                                    <p>Gender:- ${data[i].gender}</p>
                                     <p>House:- ${data[i].house}</p>
                                     <p>DateOfBirth:- ${data[i].dateOfBirth}</p>
                                 </div>`;
