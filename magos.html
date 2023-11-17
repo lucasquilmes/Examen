@@ -38,13 +38,20 @@
                 slice.setAttribute("class","slice");
                 box.appendChild(slice);
                 slice.innerHTML = `<p>${data[i].elixirs[j].name} <p> `
-
-                
+                const button = document.createElement('button'); 
+                button.type = 'button'; 
+                button.innerText = 'Haz Click'; 
+                slice.innerHTML.appendChild('button');
+                    button.onclick()
             }
         }    
 
          
         }
+
+       
+
+        
     </script>
 </body>
 </html>
