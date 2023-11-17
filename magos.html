@@ -27,16 +27,12 @@
                 let box = document.createElement("div");
                 box.setAttribute("class","box");
                 let content =document.getElementById("content");
-
+                for(var j = 0;j<data[i].elixirs.length;j++){
+                    console.log(j)
                 main.appendChild(box);
-                box.innerHTML = `<h2>${data[i].firstName} ${data[i].lastName}</h2>
-                               
-                                <div class="info">
-                                    <p>Gender:- ${data[i].gender}</p>
-                                    <p>House:- ${data[i].house}</p>
-                                    <p>DateOfBirth:- ${data[i].dateOfBirth}</p>
-                                </div>`;
-                 
+                box.innerHTML = `<h2>${data[i].firstName} ${data[i].lastName} ${data[i].elixirs[j].name}</h2>`
+                }       
+              
             }
         }
     </script>
