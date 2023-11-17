@@ -27,14 +27,26 @@
                 let box = document.createElement("div");
                 box.setAttribute("class","box");
                 let content =document.getElementById("content");
+
+                main.appendChild(box);
+                box.innerHTML = `<h2>${data[i].firstName} ${data[i].lastName}</h2>`
+                          
                 for(var j = 0;j<data[i].elixirs.length;j++){
                     console.log(j)
-                main.appendChild(box);
-                box.innerHTML = `<h2>${data[i].firstName} ${data[i].lastName} ${data[i].elixirs[j].name}</h2>`
-                }       
               
+                let slice = document.createElement("div");
+                slice.setAttribute("class","slice");
+                box.appendChild(slice);
+                slice.innerHTML = `<p>${data[i].elixirs[j].name} <p> `
+                }
             }
+
+           
         }
+
+        slice.innerHTML{
+                
+            }
     </script>
 </body>
 </html>
