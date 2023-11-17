@@ -18,13 +18,6 @@
             displaydata(data);
         })
 
-        fetch(`https://wizard-world-api.herokuapp.com/houses `).then((data2)=>{
-            let info2 = data2.json();
-            return info2;
-        }).then((data2)=>{
-            displaydata(data2);
-        })
-
 
         function displaydata(data){
             console.log(data);
@@ -36,19 +29,22 @@
                 let content =document.getElementById("content");
 
                 main.appendChild(box);
-                box.innerHTML = `<h2>${data[i].name}</h2>`
+                box.innerHTML = `<h2>${data[i].firstName} ${data[i].lastName}</h2>`
                           
-                
+                for(var j = 0;j<data[i].elixirs.length;j++){
+                    console.log(j)
+              
+                let slice = document.createElement("div");
+                slice.setAttribute("class","slice");
+                box.appendChild(slice);
+                slice.innerHTML = `<p>${data[i].elixirs[j].name} <p> `
+               
             }
-
-          
-            
         }    
 
          
-        
+        }
 
-        
        
 
         
