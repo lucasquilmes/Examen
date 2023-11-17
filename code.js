@@ -7,12 +7,12 @@ window.onload = async () => {
     const spinnerHtmlElement = document.getElementById('spinner');
     spinnerHtmlElement.remove();
   
-    for (const film of films) {
+    for (const wizard of wizards) {
       const mainHtmlElement = document.getElementById('main');
       const newElement = document.createElement('div');
       newElement.innerHTML = `
-        <h2>${film.title}</h2>
-        <p>${film.opening_crawl}</p>
+        <h2>${wizard.FirstName}</h2>
+        <p>${{wizard.LastName}</p>
       `;
       mainHtmlElement.appendChild(newElement);
     }
