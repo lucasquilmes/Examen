@@ -20,15 +20,11 @@ function displaydata(data){
                   
         for(var j = 0;j<data[i].elixirs.length;j++){
             console.log(j)
-      
-        let slice = document.createElement("div");
-        slice.setAttribute("class","slice");
-        box.appendChild(slice);
-        slice.innerHTML = `<p>${data[i].elixirs[j].name} <p> `
-       
-         }
+            let slice = document.createElement("div");
+            slice.setAttribute("class","slice");
+            box.appendChild(slice);
+            slice.innerHTML = `<p>${data[i].elixirs[j].name} <p> `
+        }
     }    
-
- 
 }
 

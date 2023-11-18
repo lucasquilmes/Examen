@@ -8,8 +8,10 @@
 </head>
 <body>
     <h1 >examen</h1>
+    <div id="ingredientsContainer"></div>
     <div class="main">
     </div>
+    
     <script>
         fetch(`https://wizard-world-api.herokuapp.com/wizards `).then((data)=>{
             let info = data.json();
@@ -38,7 +40,8 @@
                     box.innerHTML = `<h2>${data[i].firstName} ${data[i].lastName}</h2>`
                 }
                 
-                          
+                
+
                 for(let j = 0;j<data[i].elixirs.length;j++){
                     console.log(j)
               
@@ -51,9 +54,13 @@
                             console.log('klk');
                             leerIngredientesElixir(data[i].elixirs[j].id);
                         });
-
-
                 }
+
+                let botonDestacar = document.createElement("button");
+                botonDestacar.setAttribute("class","botonDestacar");
+                box.appendChild(botonDestacar);
+                botonDestacar.innerHTML=`<p>DESTACAR</p>`;
+            //     botonDestacar.addEventListener('click')
             }    
         }
         let ingredientsContainer = document.getElementById("ingredientsContainer");
@@ -65,14 +72,18 @@
             })
             .then((elixirdata) => {
                 console.log(elixirdata);
-
+              
                 let ingredientes = "";
-
+                let parrafo;
                 for (let klk = 0; klk < elixirdata.ingredients.length; klk++) {
                     let parrafo = document.createElement("p");
-                    parrafo.textContent = elixirdata.ingredients[klk];
+                    parrafo.textContent = elixirdata.ingredients[klk].name;
                     ingredientsContainer.appendChild(parrafo);
+                    console.log(elixirdata.ingredients[klk].name)
+                    
+                    
                 }
+                ingredientsContainer.appendChild(parrafo);
             })
         }
        
