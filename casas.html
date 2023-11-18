@@ -12,8 +12,33 @@
     </div>
     <script>
     
+        const DataCasas = 
+        [
+            {
+                nombre:'Gryffindor',
+                foto:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgecCDewIgVc6zWFKjHTlUVVWHW3Ev14Qm-YvpX3Nkq9Xe33Qcb8jAl6d-Q1nDi_K_0Oo&usqp=CAU'
+            },
 
-        fetch(`https://wizard-world-api.herokuapp.com/Houses `).then((data)=>{
+            {
+                nombre:'Hufflepuff',
+                foto: 'https://i.pinimg.com/736x/ce/66/f1/ce66f10b1dbf2bc58b8cabcc7fdf28be.jpg'
+            },
+
+            {
+                nombre: 'Ravenclaw',
+                foto:'https://media.milesdefiestas.com/galeria/articulos/decoracion-de-pared-emblema-ravenclaw-harry-potter-61cm_12420_1.jpg'
+            },
+
+            {
+                nombre: 'Slytherin',
+                foto:'https://m.media-amazon.com/images/I/71kKTv9B7gL._AC_SX569_.jpg'
+            }
+
+        ];
+
+
+
+        fetch(`https://wizard-world-api.herokuapp.com/houses `).then((data)=>{
             let info = data.json();
             return info;
         }).then((data)=>{
@@ -24,29 +49,55 @@
         function displaydata(data){
             console.log(data);
             var main = document.querySelector(".main");
+
             for(var i = 0;i<data.length;i++){
                 console.log(data[i]);
                 let box = document.createElement("div");
                 box.setAttribute("class","box");
-                let content =document.getElementById("content");
+                
+                for( let d = 0; d < DataCasas.length; d++)
+                {
+                    if( data[i].name == DataCasas[d].nombre)
+                    box.style.backgroundImage=`url('${DataCasas[d].foto}')`;
+                    box.style.backgroundSize = "cover"; // Ajusta el tamaño de la imagen al fondo
+    box.style.backgroundRepeat = "no-repeat"; // Evita que la imagen se repita
+    box.style.backgroundPosition = "center"; // Centra la imagen en la caja
+
+                }
+               
+                let content =document.getElementById=("content");
                 main.appendChild(box);
-                box.innerHTML = `<h2>${data[i].name} </h2>
+                box.innerHTML = `<h2>${data[i].name}</h2>
+                    <p>animal : ${data[i].animal} <br>
+                    common room : ${data[i].commonRoom}<br>
+                    element : ${data[i].element} <br>
+                    founder : ${data[i].founder} <br>
+                    ghost : ${data[i].ghost} <br></p>
+                    <p>heads :`;
+                        for (var j=0; j<data[i].heads.length;j++)
+                        {
+                            let p = document.createElement("p");
+                            p.setAttribute("class","p");
+                            box.appendChild(p);
+                            p.innerHTML=` ${data[i].heads[j].firstName} ${data[i].heads[j].lastName}`;
+                        }
+                        
+                    box.innerHTML +=`<p>
+                    house colours : ${data[i].houseColours}<br> </p>
+                    <p>traits :`;
+                    for (var j=0; j<data[i].traits.length;j++)
+                        {
+                            let p = document.createElement("p");
+                            p.setAttribute("class","p");
+                            box.appendChild(p);
+                            p.innerHTML=` ${data[i].traits[j].name} `;
+                        }
                                
                         
-                }
             }
+        }
 
-          
-            
-        }    
-
-         
-        
-
-        
-       
-
-        
+      
     </script>
 </body>
 </html>

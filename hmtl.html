@@ -1,13 +1,33 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slytherin</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="code" href="css/code.js">
+    <title>Wizard World API</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1 class="hosuse">Slytherin</h1>
-    <div class="main"> </div>
+    <h1>Wizard World API</h1>
+    <div class="main">
+    </div>
+
+    <script>
+        fetch(`https://wizard-world-api.herokuapp.com`)
+            .then(response => response.json())
+            .then(data => displayData(data))
+            .catch(error => console.error('Error fetching data:', error));
+
+        function displayData(data) {
+            console.log(data);
+            var main = document.querySelector(".main");
+
+            data.forEach(wizard => {
+                let box = document.createElement("div");
+                box.setAttribute("class", "box");
+                main.appendChild(box);
+                box.innerHTML = `<h2>${wizard.firstName} ${wizard.lastName}</h2>`;
+            });
+        }
+    </script>
 </body>
 </html>

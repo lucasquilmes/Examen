@@ -1,4 +1,4 @@
-fetch(`http://hp-api.herokuapp.com/api/characters/house/Gryffindor`).then((data)=>{
+fetch(`https://wizard-world-api.herokuapp.com/wizards `).then((data)=>{
     let info = data.json();
     return info;
 }).then((data)=>{
@@ -16,10 +16,19 @@ function displaydata(data){
         let content =document.getElementById("content");
 
         main.appendChild(box);
-        box.innerHTML = `<h2>${data[i].name}</h2>
-                        <img src="${data[i].image}"></img>
-                        <div class="info">
-                            <p>Gender:- ${data[i].gender}</p>
-                            <p>House:- ${data[i].house}</p>
-                            <p>DateOfBirth:- ${data[i].dateOfBirth}</p>
-                        </div>`
+        box.innerHTML = `<h2>${data[i].firstName} ${data[i].lastName}</h2>`
+                  
+        for(var j = 0;j<data[i].elixirs.length;j++){
+            console.log(j)
+      
+        let slice = document.createElement("div");
+        slice.setAttribute("class","slice");
+        box.appendChild(slice);
+        slice.innerHTML = `<p>${data[i].elixirs[j].name} <p> `
+       
+         }
+    }    
+
+ 
+}
+
