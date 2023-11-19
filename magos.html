@@ -13,13 +13,13 @@
     </div>
     
     <script>
+
         fetch(`https://wizard-world-api.herokuapp.com/wizards `).then((data)=>{
             let info = data.json();
             return info;
         }).then((data)=>{
             displaydata(data);
         })
-
 
         function displaydata(data){
             console.log(data);
@@ -49,7 +49,7 @@
                     slice.setAttribute("class","slice");
                     box.appendChild(slice);
                     slice.innerHTML = `<p>${data[i].elixirs[j].name} <p> `
-                        leerIngredientesElixir(data[i].elixirs[j].id);
+                        
                         slice.addEventListener('click', function () {
                             console.log('klk');
                             leerIngredientesElixir(data[i].elixirs[j].id);
@@ -63,6 +63,7 @@
             //     botonDestacar.addEventListener('click')
             }    
         }
+
         let ingredientsContainer = document.getElementById("ingredientsContainer");
         function leerIngredientesElixir(elixirId) {
 
@@ -72,18 +73,29 @@
             })
             .then((elixirdata) => {
                 console.log(elixirdata);
-              
-                let ingredientes = "";
-                let parrafo;
-                for (let klk = 0; klk < elixirdata.ingredients.length; klk++) {
-                    let parrafo = document.createElement("p");
-                    parrafo.textContent = elixirdata.ingredients[klk].name;
+
+
+                ingredientsContainer.innerHTML = '';
+                let parrafo = document.createElement("p");
+                
+                
+                if(elixirdata.ingredients.length>0)
+                {
+                    for (let klk = 0; klk < elixirdata.ingredients.length; klk++) {
+                        
+                        parrafo.textContent = elixirdata.ingredients[klk].name;
+                        ingredientsContainer.appendChild(parrafo);
+                        console.log(elixirdata.ingredients[klk].name)
+                    }
+                }else
+                {
+                    
+                    parrafo.textContent = `no tiene ingredientes`;
                     ingredientsContainer.appendChild(parrafo);
-                    console.log(elixirdata.ingredients[klk].name)
-                    
-                    
                 }
-                ingredientsContainer.appendChild(parrafo);
+                
+
+               
             })
         }
        
