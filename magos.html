@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ravenclaw</title>
+    <title>examen</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -56,11 +56,14 @@
                         });
                 }
 
-                let botonDestacar = document.createElement("button");
-                botonDestacar.setAttribute("class","botonDestacar");
-                box.appendChild(botonDestacar);
-                botonDestacar.innerHTML=`<p>DESTACAR</p>`;
-            //     botonDestacar.addEventListener('click')
+                    let botonDestacar = document.createElement("button");
+                    botonDestacar.setAttribute("class", "botonDestacar");
+                    botonDestacar.innerHTML = `<p>DESTACAR</p>`;
+                    botonDestacar.addEventListener('click', function () {
+                    abrirpopup(data[i].firstName ? `${data[i].firstName} ${data[i].lastName}` : data[i].lastName);
+});
+box.appendChild(botonDestacar);
+
             }    
         }
 
@@ -99,8 +102,17 @@
             })
         }
        
+        function cerrarpopup(){
+            document.getElementById("overlay").style.display="none";
+        }
+        function abrirpopup(nombrecasa)
+        {
+            cerrarpopup();
+            document.getElementById("nombrecasa").innertext=nombrecasa;
+            document.getElementById("overlay").style.display="flex";
 
-        
+        }
+
     </script>
 </body>
 </html>

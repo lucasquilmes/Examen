@@ -10,6 +10,11 @@
     <h1 >examen</h1>
     <div class="main">
     </div>
+    <div id="overlay">
+        <div id="popup">
+            <h2>Casa destacada: <span id="nombrecasa"></span></h2>
+        </div>
+    </div>
     <script>
     
         const DataCasas = 
@@ -55,6 +60,13 @@
                 let box = document.createElement("div");
                 box.setAttribute("class","box");
                 
+                let button = document.createElement("button");
+                    button.innerHTML = "Destacar";
+                    button.addEventListener("click", function () {
+                        abrirPopup(data[i].name);
+                    });
+                    box.appendChild(button);
+                
                 for( let d = 0; d < DataCasas.length; d++)
                 {
                     if( data[i].name == DataCasas[d].nombre)
@@ -67,37 +79,45 @@
                
                 let content =document.getElementById=("content");
                 main.appendChild(box);
-                box.innerHTML = `<h2>${data[i].name}</h2>
-                    <p>animal : ${data[i].animal} <br>
-                    common room : ${data[i].commonRoom}<br>
-                    element : ${data[i].element} <br>
-                    founder : ${data[i].founder} <br>
-                    ghost : ${data[i].ghost} <br></p>
-                    <p>heads :`;
-                        for (var j=0; j<data[i].heads.length;j++)
-                        {
-                            let p = document.createElement("p");
-                            p.setAttribute("class","p");
-                            box.appendChild(p);
-                            p.innerHTML=` ${data[i].heads[j].firstName} ${data[i].heads[j].lastName}`;
-                        }
-                        
-                    box.innerHTML +=`<p>
+                box.innerHTML += `<h2>${data[i].name}</h2>
+                <p>animal : ${data[i].animal} <br>
+                common room : ${data[i].commonRoom}<br>
+                element : ${data[i].element} <br>
+                founder : ${data[i].founder} <br>
+                ghost : ${data[i].ghost} <br></p>
+                <p>heads :`;
+
+                for (var j = 0; j < data[i].heads.length; j++) {
+                    let p = document.createElement("p");
+                    p.setAttribute("class", "p");
+                    box.appendChild(p);
+                    p.innerHTML = ` ${data[i].heads[j].firstName} ${data[i].heads[j].lastName}`;
+                }
+
+                box.innerHTML += `<p>
                     house colours : ${data[i].houseColours}<br> </p>
                     <p>traits :`;
-                    for (var j=0; j<data[i].traits.length;j++)
-                        {
-                            let p = document.createElement("p");
-                            p.setAttribute("class","p");
-                            box.appendChild(p);
-                            p.innerHTML=` ${data[i].traits[j].name} `;
-                        }
-                               
-                        
-            }
-        }
 
-      
+                for (var j = 0; j < data[i].traits.length; j++) {
+                    let p = document.createElement("p");
+                    p.setAttribute("class", "p");
+                    box.appendChild(p);
+                    p.innerHTML = ` ${data[i].traits[j].name} `;
+                }
+                        
+            
+                }
+                function cerrarPopup(){
+                    document.getElementById("overlay").style.display="none";
+                }
+                function abrirPopup(nombrecasa)
+                {   console.log('kelekkekek');                    cerrarPopup();
+                    document.getElementById("nombrecasa").innerText = nombrecasa;
+                    document.getElementById("overlay").style.display="flex";
+
+                }
+
+            }
     </script>
 </body>
 </html>
